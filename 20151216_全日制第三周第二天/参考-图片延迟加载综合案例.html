@@ -2,8 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/><!--移动端前面必须加这个标头-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/><!--移动端前面必须加这个标头-->
     <title>图片延迟加载</title>
     <style type="text/css">
         body, div, span, ul, li, h2, p {
@@ -96,7 +95,6 @@
 
     //2、编写图片延迟加载的方法
     var winH = document.documentElement.clientHeight || document.body.clientHeight;
-
     var loadImg = function () {
         var winT = document.documentElement.scrollTop || document.body.scrollTop;
         var imgList = newsList.getElementsByTagName("img");

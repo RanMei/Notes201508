@@ -101,11 +101,11 @@
         [].sort.call(arguments, function (a, b) {
             return a - b;
         });
-        [].shift.call(arguments);
-        [].pop.call(arguments);
-        return (eval([].join.call(arguments, "+")) / arguments.length).toFixed(2);
+        // [].shift.call(arguments);
+        // [].pop.call(arguments);
+        // return (eval([].join.call(arguments, "+")) / arguments.length).toFixed(2);
     }
-    var res = avgFn(10, 10, 9, 8, 1);
+    var res = avgFn({10, 10, 9, 8, 1});
     console.log(res);
 </script>
 </body>

@@ -25,19 +25,35 @@ var boxBottom=offset(div1).t+div1.offsetHeight
 var broswerBottom=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight)
 </body>
 </html>
-<script src="DOM.js"></script>
 <script>
-window.onscroll=function(){
-	var boxBottom=offset(div1).t+div1.offsetHeight;//算div1的底边
-	var broswerBottom=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight);//可视窗口的底边
-	var boxTop=offset(div1).t;
-	if(boxTop>broswerBottom){
-		div1.innerHTML="我是原来的文字";
+function offset(ele){
+	var l=ele.offsetLeft;
+	var t=ele.offsetTop;
+	var p=ele.offsetParent;
+	while(p && p!==document.body){
+		if(window.navigator.userAgent.indexOf("MSIE 8")>-1){
+			l+=p.offsetLeft;
+			t+=p.offsetTop;
+			p=p.offsetParent;
+		}else{
+			l+=p.offsetLeft+p.clientLeft;
+			t+=p.offsetTop+p.clientTop;
+			p=p.offsetParent;
+		}
 	}
-	if(boxBottom<broswerBottom){
-		div1.innerHTML="我变给你看……";
-	}
-	
+	return {l:l,t:t};
 }
-
+var oDiv=document.getElementById("div1");
+oDiv.t=offset(oDiv).t+oDiv.offsetHeight;
+var winH=document.documentElement.clientHeight || document.body.clientHeight;
+window.onscroll=function() {
+	var winBottom=(document.documentElement.scrollTop || document.body.scrollTop)+winH;
+	if(oDiv.t<winBottom){
+		oDiv.style.background="yellow";
+		oDiv.innerHTML="我是现在的文字";
+	}else{
+		oDiv.style.background="green";
+		oDiv.innerHTML="我是原来的文字";
+	}
+}
 </script>
